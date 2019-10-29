@@ -2,7 +2,7 @@
    Public API Request
 ======================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -14,9 +14,9 @@ html, body {
 }
 
 body {
-    font-family: "Abel", sans-serif;
+    font-family: "Raleway", sans-serif;
     text-align: center;
-    background: #003605e6;
+    background: #000000;
 }
 
 header {
@@ -30,13 +30,13 @@ header {
 
 header h1 {
     font-size: 1.25em;
-    color: #159e09e6;
+    color: #646464;
     margin-top: 35px;
 }
 
 .search-input {
     padding: 0.4rem 1rem;
-    border: 1px solid rgba(200, 200, 200, 0.9);
+    border: 1px solid #000000;
     border-radius: 0.25rem 0 0 0.25rem ;
     max-width: 20rem;
     transition: .4s ease-out;
@@ -44,15 +44,15 @@ header h1 {
 }
 
 .search-input:active, .search-input:hover, .search-input:focus {
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    border: 1.5px solid #d8d8d8e6;
 }
 
 .search-submit {
     cursor: pointer;
     height: 33px;
-    background: rgba(245, 245, 245, 0.9);
+    background: rgba(245, 245, 245, 0);
     border-radius: 0 0.25rem 0.25rem 0;
-    border: 1px solid rgba(200, 200, 200, 0.9);
+    border: 1px solid rgba(200, 200, 200, 0);
     transition: .4s ease-out;
     outline: none;
 }
@@ -87,9 +87,8 @@ header h1 {
     max-width: 360px;
     margin: 10px 10px 20px;
     padding: 10px;
-    background: #40d43b2f;
+    background: #505050bd;
     border-radius: 0.25em;
-    border: 2px dashed #003605e6;
     transition: .4s ease-out;
     overflow: hidden;
 }
@@ -110,13 +109,14 @@ header h1 {
 
 .card-text {
     font-size: 0.9em;
-    color: #012404e6;
+    color: #e1e2e1e6;
     margin: 7px auto;
     transition: .4s ease-out;
 }
 
 .cap {
     text-transform: capitalize;
+    color: #c2c8c2e6;
 }
 
 
@@ -140,9 +140,9 @@ header h1 {
     min-height: 415px;
     margin: 10px auto auto;
     padding-bottom: 15px;
-    background: #003605e3;
+    background: #b7b8b7;
     border-radius: 0.25em;
-    border: 1.5px solid #159e09e6;
+    border: 1.5px solid #424242e6;
     transition: .4s ease-out;
 }
 
@@ -151,8 +151,8 @@ header h1 {
     top: 15px;
     right: 15px;
     cursor: pointer;
-    color: #159e09e6;
-    background: #000000cc;
+    color: #b7b8b7;
+    background: #474747;
     outline: none;
     border-radius: 0.25em;
     border: 1px solid #000000cc;
@@ -166,10 +166,11 @@ header h1 {
 
 .modal-name {
     margin-bottom: 5px;
+    color: #474747;
 }
 
 .modal-text {
-    color: #159e09e6;
+    color: #646464;
     margin: 10px;
 }
 
@@ -188,9 +189,7 @@ header h1 {
     max-width: 420px;
     padding: 10px 15px 15px;;
     margin: 10px auto auto;
-    background: #000000e6;
-    border-radius: 0.25em;
-    border: 1px solid #6464644d;
+    background: #00000000;
 }
 
 
@@ -199,9 +198,9 @@ header h1 {
     cursor: pointer;
     font-size: 0.85em;
     text-transform: uppercase;
-    color: #000000e6;
+    color: #474747;
+    background: #ffffff00;
     padding: 0.75em 1.5em;
-    background: #003605e6;
     border-radius: 0.35em;
     transition: .4s ease-out;
     outline: none;
@@ -248,16 +247,19 @@ header h1 {
 @media (min-width: 1024px) {
 
     .card:hover {
-        background: #40d43b86;
-        border: 1px solid rgba(50, 50, 50, 0.9);
+        background: #b7b8b7;
+        border: 1px solid rgba(0, 0, 0, 0.9);
     }
 
     .card:hover .card-text {
-        color: #003605e6; 
+        color: #646464; 
     }
 
+    .card:hover .cap {
+      color: #474747;
+    }
     .btn:hover {
-        background: rgba(255, 255, 255, 1);
-        color: #003605e6; 
+      color: #b7b8b7;
+      background: #474747; 
     }
 }

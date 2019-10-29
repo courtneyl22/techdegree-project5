@@ -14,11 +14,8 @@ $.ajax({
     //referring to the results format from the Random Generated User API's documentation
     dataResults = data.results;
 
-
-
     //using the forEach loop to generate a new user with their own information
-    dataResults.forEach( employees => {
-
+    dataResults.forEach(employees => {
       //assigning the variables for the user's unique information
       let image = employees.picture.medium;
       let firstName = employees.name.first;
@@ -35,26 +32,28 @@ $.ajax({
       <div class="card-info-container">
         <h3 id="name" class="card-name cap"> ${firstName} ${lastName}</h3>
         <p class="card-text">${email}</p>
-        <p class="card-text cap">${city}, ${state}</p>
+        <p class="card-text">${city}, ${state}</p>
       </div>`
 
       //appending these users to the gallery id
       $('#gallery').append(card);  
     });
+    console.log(data);
   }
 });
 
 function modalPopUp(i) {
   //re-asssigning these variables since they're not globally assigned
-  let image = dataResults[i].picture.medium;
+  let image = dataResults[i].picture.large;
   let firstName = dataResults[i].name.first;
   let lastName = dataResults[i].name.last;
   let email = dataResults[i].email;
-  let city = dataResults[i].location.city.toUpperCase();
-  let state = dataResults[i].location.state.toUpperCase();
+  let city = dataResults[i].location.city;
+  let state = dataResults[i].location.state;
 
   //more detailed information for the modal container assigned to variables
-  let streetName = dataResults[i].location.street.toUpperCase();
+  let streetNumber = dataResults[i].location.street.number;
+  let streetName = dataResults[i].location.street.name;
   let postalCode = dataResults[i].location.postcode;
   let birthMonth = dataResults[i].dob.date.slice(5,7);
   let birthDay = dataResults[i].dob.date.slice(8,10);
@@ -70,11 +69,15 @@ function modalPopUp(i) {
       <img class="modal-img" src=${image} alt="profile picture">
       <h3 id="name" class="modal-name cap">${firstName} ${lastName}</h3>
       <p class="modal-text">${email}</p>
-      <p class="modal-text cap">${city}</p>
+      <p class="modal-text cap">${city}, ${state}</p>
       <hr>
       <p class="modal-text">${phoneNumber}</p>
-      <p class="modal-text">${streetName}, ${city}, ${state} ${postalCode}</p>
+      <p class="modal-text">${streetNumber} ${streetName}, ${city}, ${state} ${postalCode}</p>
       <p class="modal-text">Birthday: ${birthMonth}/${birthDay}/${birthYear}</p>
+    </div>
+    <div class="modal-btn-container">
+      <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+      <button type="button" id="modal-next" class="modal-next btn">Next</button>
     </div>
   </div>` 
 
@@ -85,11 +88,59 @@ function modalPopUp(i) {
   $('#modal-close-btn').on('click', () => {
     $('.modal-container').remove();
   });
+
+  // //to go to the next employee modal
+  // $('#modal-prev').on('click', () => {
+    
+  // });
+
+  // //to go to the previous employee modal
+  // $('#modal-next').on('click', () => {
+
+  // });
 } 
- 
+
 //only when a user's card is clicked, the modal container will appear
 $('#gallery').on('click', '.card', function() {
   i = ($(this).index())
   modalPopUp(i);
 });
 
+//appending the search bar to the search-container div
+const searchBar = `<form action="#" method="get">
+  <input type="search" id="search-input" class="search-input" placeholder="Search...">
+  <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+</form>`
+
+$('.search-container').append(searchBar);
+$('#gallery').before('<label id="no-result"><font color="white">OOPS! We found no results.</font></label>');
+$('#no-result').hide();
+
+let searchResults = [];
+
+//search functionality
+const searchInput = () => {
+  searchResults = [];
+  for (let i = 0; i < $('#gallery .card').length; i++) {                                     
+    if ($('#gallery .card')[i].textContent.toLowerCase().includes($('#search-input').val().toLowerCase())) {                        
+      $('#gallery .card')[i].style.display = "block";                 
+      searchResults.push($('#gallery .card')[i]);                   
+    } else {
+      $('#gallery .card')[i].style.display = "none";              
+    }
+  }
+  if(searchResults.length === 0) {
+    $('#no-result').show();
+  } else {
+    $('#no-result').hide();
+  }
+}
+
+//adding 'click' eventListener
+$('#search-submit').on('click', () => {
+  searchInput();             
+});
+
+$('#search-input').on('keyup', () => {
+  searchInput();
+});
